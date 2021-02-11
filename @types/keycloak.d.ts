@@ -1,7 +1,7 @@
 import { ITokenResponse } from '../src/models';
 
 declare namespace Keycloak {
-	type KeycloakAdapterName = 'cordova'|'default';
+	type KeycloakAdapterName = 'cordova'|'default'|'cordova-native';
 	type KeycloakOnLoad = 'login-required'|'check-sso';
 	type KeycloakResponseMode = 'query'|'fragment';
 	type KeycloakResponseType = 'code'|'id_token token'|'code id_token token';
@@ -66,6 +66,26 @@ declare namespace Keycloak {
 		 * @default standard
 		 */
 		flow?: KeycloakFlow;
+
+		/**
+		 * The Proof Key Code Exchange, value for now is always "S256" - The SHA256 based PKCE method
+		 */
+		pkceMethod?: "S256";
+
+		/**
+		 * Specifies the uri to redirect after init for applications without origin url. i.e adapters like cordova, corodva-native.
+		 */
+		redirectUri?: string;
+
+		/**
+		 *  Set the redirect uri for silent authentication check if onLoad is set to 'check-sso'.
+		 */
+		silentCheckSsoRedirectUri?: string;
+		
+		/**
+		 *  Enables logging messages from Keycloak to the console (default is false).
+		 */
+		enableLogging?: string;
 	}
 
 	interface KeycloakLoginOptions {
